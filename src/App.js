@@ -1,13 +1,26 @@
+import React from 'react'
 import './App.css';
-import Header from './Header'
+import HeaderComponent from './Components/HeaderComponent'
+import InstructorsContainer from './Containers/InstructorsContainer'
+import AnimeContainer from './Containers/AnimeContainer' 
 
-function App() {
-	const instructorNamesArray = ["Steven", "Caryn", "Greg"]
-  return (
-    <div className="App">
-      <Header instructorNamesArray={instructorNamesArray}/>
-    </div> // instructorsNamesArray is a prop we're passing to the child component, Header.js
-  );
+class App extends React.Component {
+
+	state = { instructorObj: {} }
+
+	appClickHandler = (instructorObj) => {
+		this.setState({ instructorObj: instructorObj })
+	}
+
+	render() {
+		return (
+			<div className="App">
+				<HeaderComponent />
+				<InstructorsContainer appClickHandler={this.appClickHandler} />
+				<AnimeContainer instructorObj={this.state.instructorObj} />
+			</div>
+		)
+	}
 }
 
 export default App;
