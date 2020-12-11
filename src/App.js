@@ -6,18 +6,21 @@ import AnimeContainer from './Containers/AnimeContainer'
 
 class App extends React.Component {
 
-	state = { instructorObj: {} }
+	state = { instructorObjs: [] }
 
 	appClickHandler = (instructorObj) => {
-		this.setState({ instructorObj: instructorObj })
-	}
+		console.log(instructorObj)
+		console.log(this.state.instructorObjs)
+		if (!this.state.instructorObjs.includes(instructorObj)) { this.setState(prevState => ({ instructorObjs: [...prevState.instructorObjs, instructorObj] }))}
+		// if (!this.state.blogArray.includes(blogObj)) { this.setState((prevState) => ({ blogArray: [...prevState.blogArray, blogObj] }) )
+    }
 
 	render() {
 		return (
 			<div className="App">
 				<HeaderComponent />
 				<InstructorsContainer appClickHandler={this.appClickHandler} />
-				<AnimeContainer instructorObj={this.state.instructorObj} />
+				<AnimeContainer instructorObjs={this.state.instructorObjs} />
 			</div>
 		)
 	}

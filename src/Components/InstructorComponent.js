@@ -3,7 +3,7 @@ import React from 'react'
 class InstructorComponent extends React.Component {
 
 	instructorClickHandler = () => {
-		this.props.appClickHandler(this.props.instructorObj)
+		if (this.props.appClickHandler) {this.props.appClickHandler(this.props.instructorObj)}
 	}
 
 	render() {
