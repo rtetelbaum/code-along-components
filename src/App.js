@@ -9,10 +9,8 @@ class App extends React.Component {
 	state = { instructorObjs: [] }
 
 	appClickHandler = (instructorObj) => {
-		console.log(instructorObj)
-		console.log(this.state.instructorObjs)
-		if (!this.state.instructorObjs.includes(instructorObj)) { this.setState(prevState => ({ instructorObjs: [...prevState.instructorObjs, instructorObj] }))}
-		// if (!this.state.blogArray.includes(blogObj)) { this.setState((prevState) => ({ blogArray: [...prevState.blogArray, blogObj] }) )
+		let foundInstructor = this.state.instructorObjs.find( obj => obj.id === instructorObj.id) 
+		if (!foundInstructor) { this.setState(prevState => ({ instructorObjs: [...prevState.instructorObjs, instructorObj] }))}
     }
 
 	render() {
