@@ -8,7 +8,7 @@ class InstructorComponent extends React.Component {
 
 	render() {
 		return (
-			<p onClick={this.instructorClickHandler}>{this.props.instructorObj.name}</p>
+			<p onClick={this.instructorClickHandler}>{this.props.instructorObj.name}, Mod {this.props.instructorObj.mod}</p>
 		)
 	}
 
