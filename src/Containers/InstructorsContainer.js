@@ -21,17 +21,17 @@ class InstructorContainer extends React.Component {
 	}
 
 	filteredInstructors = () => {
-		return this.state.instructors.filter(instructorObj => instructorObj.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+		const instructors = this.state.instructors.filter(instructorObj => instructorObj.name.toLowerCase().includes(this.state.searchValue.toLowerCase()))
+		return instructors.map(instructorObj => <InstructorComponent instructorObj={instructorObj} key={instructorObj.id} appClickHandler={this.props.appClickHandler} />)
 	}
 
 	render() {
-		const instructors = this.filteredInstructors().map(instructorObj => <InstructorComponent instructorObj={instructorObj} key={instructorObj.id} appClickHandler={this.props.appClickHandler} />)
 		return (
 			<div>
 				<FormComponent createNewInstructor={this.createNewInstructor} />
 				<SearchComponent searchInstructor={this.searchInstructor} searchValue={this.state.searchValue} />
 				<h3>Instructors:</h3>
-				{instructors}
+				{this.filteredInstructors()}
 			</div>
 		)
 	}

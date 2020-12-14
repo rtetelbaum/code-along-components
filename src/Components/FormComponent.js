@@ -9,9 +9,8 @@ class FormComponent extends React.Component {
 
 	formSubmit = (event) => {
 		event.preventDefault()
-		this.props.createNewInstructor({name: event.target.name.value, mod: event.target.mod.value})
-		event.target.reset()
-		// this.setState({name: "", mod: ""})
+		this.props.createNewInstructor({name: this.state.name, mod: this.state.mod})
+		this.setState({name: "", mod: ""})
 	}
 
 	changeHandler = (event) => {
@@ -28,9 +27,11 @@ class FormComponent extends React.Component {
 			<div>
 				<h3>New Instructor Form</h3>
 				<form onSubmit={this.formSubmit}>
-					<input type="text" name="name" placeholder="Enter Instructor Name" value={this.state.name} onChange={this.changeHandler} />
+					<label htmlFor="Instructor Name">Instructor Name: </label>
+					<input type="text" name="name" placeholder="Enter Instructor Name" value={this.state.name} onChange={this.changeHandler} /><br />
+					<label htmlFor="Instructor Mod">Instructor Mod: </label>
 					<input type="number" name="mod" placeholder="Enter Instructor Mod" value={this.state.mod} onChange={this.changeHandler} />
-					<input type="submit" value="Create Instructor" />
+					<button>Create</button>
 				</form>
 			</div>
 		)
