@@ -11,7 +11,7 @@ class InstructorContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('http://localhost:3004/instructors')
+		fetch('http://localhost:4000/instructors')
 			.then(response => response.json())
 			.then(data => this.setState({instructors: data}))
 	}
