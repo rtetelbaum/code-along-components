@@ -6,8 +6,14 @@ import SearchComponent from '../Components/SearchComponent'
 class InstructorContainer extends React.Component {
 
 	state = {
-		instructors: [{id: 1, name: "Steven", mod: 3}, {id: 2, name: "Caryn", mod: 1}, {id: 3, name: "Greg", mod: 3}],
+		instructors: [],
 		searchValue: ""
+	}
+
+	componentDidMount() {
+		fetch('http://localhost:3004/instructors')
+			.then(response => response.json())
+			.then(data => this.setState({instructors: data}))
 	}
 
 	createNewInstructor = (instructorObj) => {
@@ -31,7 +37,7 @@ class InstructorContainer extends React.Component {
 				<FormComponent createNewInstructor={this.createNewInstructor} />
 				<SearchComponent searchInstructor={this.searchInstructor} searchValue={this.state.searchValue} />
 				<h3>Instructors:</h3>
-				{this.filteredInstructors()}
+				{this.state.instructors.length === 0 ? <p>LOADING INSTRUCTORS...</p> : this.filteredInstructors()}
 			</div>
 		)
 	}
